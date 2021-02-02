@@ -1,0 +1,11 @@
+C# 스크립트 생성:
+Project > Assets(빈공간) > Mouse Right Click > C# Script
+
+C# Script (Double Click) Visual Studio 연결
+
+C# Script 메시지 보내기:
+Debug.logo("Hello Unity");
+
+Ctrl + S(File Save)
+
+C# Script 파일을 드래그 한 후 인스펙터 창에 놓습니다. (게임 오브젝트 안으로 들어가게 됨)
