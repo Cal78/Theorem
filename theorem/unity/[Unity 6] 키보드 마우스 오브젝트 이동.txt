@@ -1,0 +1,96 @@
+Input(게임 내 입력을 관리하는 클래스)
+anyKeyDown: 아무 입력을 최초로 받을 때 true ( return 타입이 bool 값 )
+anyKey: 아무 입력을 받으면 true
+
+void Update()
+{
+  if(Input.anyKeyDown)
+      Debug.Log("플레이어가 아무 키를 눌렀습니다.");
+  if(Input.anyKey)
+      Debug.Log("플레이어가 아무 키를 누르고 있습니다.");
+}
+
+Down, Stay, Up
+각 입력 함수는 3가지 행동으로 구분
+
+GetKey: 키보드 버튼 입력을 받으면 true (매개변수 KeyCode)
+Return(Enter), Escape(ESC), 방향키(Arrow)
+
+void Update()
+{
+  if(Input.GetKeyDown(KeyCode.Return))
+      Debug.Log("엔터키를 눌렀습니다.");
+  if(Input.GetKey(KeyCode.LeftArrow))
+      Debug.Log("왼쪽으로 이동 중");
+  if(Input.GetKeyUp(KeyCode.RightArrow))
+      Debug.Log("오른쪽 이동을 멈추었습니다."); 
+}
+
+GetMouse: 마우스 버튼 입력을 받으면 true (매개변수 숫자) 0(왼쪽 버튼) 1(오른쪽 버튼)
+
+void Update()
+{
+  if(Input.GetMouseButtonDown(0))
+      Debug.Log("마우스 왼쪽 버튼을 눌렀습니다.");
+  if(Input.GetMouseButton(0))
+      Debug.Log("마우스 왼쪽 버튼을 꾹 누르는중");
+  if(Input.GetMouseButtonUp(0))
+      Debug.Log("마우스 왼쪽 버튼을 누르다가 떼었습니다."); 
+}
+
+Editor Right > Project Setting > Input > Input Manager
+Input Manager에서 Button 설정 가능
+
+GetButton: Input 버튼 입력을 받으면 true
+Button 새로 추가, 기존 변경 가능
+
+void Update()
+{
+  if(Input.GetButtonDown("Jump"))
+      Debug.Log("점프 버튼을 눌렀습니다.");
+  if(Input.GetButton("Jump"))
+      Debug.Log("점프 버튼을 누르는 중");
+  if(Input.GetButtonUp("Jump"))
+      Debug.Log("점프 버튼을 누르다가 떼었습니다."); 
+}
+
+GetAxis: 수평,수직 버튼 입력을 받으면 float
+GetAxisRaw: 마지막 값
+오브젝트는 변수 transform을 항상 가지고 있음
+
+횡 이동 A, D (종 이동 S, W)
+void Update()
+{
+  if(Input.GetButton("Horizontal"))
+      Debug.Log("횡 이동 중..." + Input.GetAxisRaw("Horizontal"));
+  if(Input.GetButton("Vertical"))
+      Debug.Log("종 이동 중..." + Input.GetAxisRaw("Vertical"));
+}
+
+Transform: 오브젝트 형태에 대한 기본 컴포넌트
+오브젝트는 변수 transform을 항상 가지고 있음
+Translate: 벡터 값을 현재 위치에 더하는 함수
+Scala: 순수한 값
+Vector: 방향과 그에 대한 크기 값
+
+int number =4; // 스칼라 값
+
+void Start()
+{
+  // Vector vec = new Vector(x, y, z);
+  Vector vec = new Vector(5, 0, 0); // 벡터 값
+  transform.Translate(vec);
+}
+
+// 계속 1초에 60회 씩 동작 (Update)
+void Update()
+{
+  Vector vec = new Vector(0, 0.1f, 0); // 벡터 값
+  transform.Translate(vec);
+}
+
+void Update()
+{
+  Vector3 vec = new Vector(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+  transform.Translate(vec);
+}
